@@ -1,0 +1,170 @@
+﻿@model Student
+
+@{
+    ViewData["Title"] = "حذف الطالب";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-exclamation-triangle me-2"></i>
+                        تأكيد حذف الطالب
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fas fa-warning me-2"></i>
+                        <strong>تحذير:</strong> هل أنت متأكد من أنك تريد حذف هذا الطالب؟ هذا الإجراء لا يمكن التراجع عنه.
+                    </div>
+
+                    <div class="student-info bg-light p-3 rounded">
+                        <h5 class="text-primary mb-3">
+                            <i class="fas fa-user me-2"></i>
+                            بيانات الطالب
+                        </h5>
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <strong>رقم الطالب:</strong>
+                            </div>
+                            <div class="col-sm-8">
+                                @Model.Id
+                            </div>
+                        </div>
+                        <hr class="my-2">
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <strong>الاسم الكامل:</strong>
+                            </div>
+                            <div class="col-sm-8">
+                                @Model.FirstName @Model.LastName
+                            </div>
+                        </div>
+                        <hr class="my-2">
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <strong>البريد الإلكتروني:</strong>
+                            </div>
+                            <div class="col-sm-8">
+                                @Model.Email
+                            </div>
+                        </div>
+                        <hr class="my-2">
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <strong>رقم الهاتف:</strong>
+                            </div>
+                            <div class="col-sm-8">
+                                @Model.Phone
+                            </div>
+                        </div>
+                        <hr class="my-2">
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <strong>تاريخ الميلاد:</strong>
+                            </div>
+                            <div class="col-sm-8">
+                                @Model.DateOfBirth.ToString("dd/MM/yyyy")
+                            </div>
+                        </div>
+                        <hr class="my-2">
+
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <strong>تاريخ التسجيل:</strong>
+                            </div>
+                            <div class="col-sm-8">
+                                @Model.EnrollmentDate.ToString("dd/MM/yyyy")
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer bg-light">
+                    <form asp-action="Delete" method="post" class="d-inline">
+                        <input type="hidden" asp-for="Id" />
+                        <div class="d-flex justify-content-between">
+                            <button type="submit" class="btn btn-danger" onclick="return confirmDelete()">
+                                <i class="fas fa-trash me-1"></i>
+                                تأكيد الحذف
+                            </button>
+                            <div>
+                                <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-info me-2">
+                                    <i class="fas fa-eye me-1"></i>
+                                    عرض التفاصيل
+                                </a>
+                                <a asp-action="Index" class="btn btn-secondary">
+                                    <i class="fas fa-arrow-left me-1"></i>
+                                    إلغاء
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 15px;
+    }
+
+    .card-header {
+        border-radius: 15px 15px 0 0 !important;
+    }
+
+    .student-info {
+        border: 1px solid #dee2e6;
+    }
+
+        .student-info .row {
+            margin-bottom: 0;
+        }
+
+        .student-info hr {
+            margin: 8px 0;
+            opacity: 0.3;
+        }
+
+    .btn {
+        border-radius: 8px;
+        padding: 8px 16px;
+    }
+
+    .alert {
+        border-radius: 10px;
+    }
+
+    .border-danger {
+        border-color: #dc3545 !important;
+        border-width: 2px !important;
+    }
+</style>
+
+<script>
+    function confirmDelete() {
+        return confirm('هل أنت متأكد من أنك تريد حذف هذا الطالب؟ لا يمكن التراجع عن هذا الإجراء.');
+    }
+
+    // Add animation effect
+    document.addEventListener('DOMContentLoaded', function() {
+        const card = document.querySelector('.card');
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+
+        setTimeout(() => {
+            card.style.transition = 'all 0.3s ease-in-out';
+            card.style.opacity = '1';
+            card.style.transform = 'translateY(0)';
+        }, 100);
+    });
+</script>

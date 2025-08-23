@@ -1,0 +1,163 @@
+﻿@model Student
+
+@{
+    ViewData["Title"] = "تفاصيل الطالب";
+}
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">
+                        <i class="fas fa-user-graduate me-2"></i>
+                        تفاصيل الطالب
+                    </h4>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold text-muted">رقم الطالب:</label>
+                                <p class="form-control-plaintext">@Model.Id</p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-bold text-muted">الاسم الأول:</label>
+                                <p class="form-control-plaintext">@Model.FirstName</p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-bold text-muted">الاسم الأخير:</label>
+                                <p class="form-control-plaintext">@Model.LastName</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold text-muted">البريد الإلكتروني:</label>
+                                <p class="form-control-plaintext">@Model.Email</p>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label fw-bold text-muted">رقم الهاتف:</label>
+                                <p class="form-control-plaintext">@Model.Phone</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold text-muted">تاريخ الميلاد:</label>
+                                <p class="form-control-plaintext">@Model.DateOfBirth.ToString("dd/MM/yyyy")</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label class="form-label fw-bold text-muted">تاريخ التسجيل:</label>
+                                <p class="form-control-plaintext">@Model.EnrollmentDate.ToString("dd/MM/yyyy")</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    @if (Model.Enrollments != null && Model.Enrollments.Any())
+                    {
+                        <div class="mt-4">
+                            <h5 class="text-primary">
+                                <i class="fas fa-book me-2"></i>
+                                المقررات المسجلة
+                            </h5>
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead class="table-dark">
+                                        <tr>
+                                            <th>اسم المقرر</th>
+                                            <th>الدرجة</th>
+                                            <th>تاريخ التسجيل</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var enrollment in Model.Enrollments)
+                                        {
+                                            <tr>
+                                                <td>@enrollment.Course?.Title</td>
+                                                <td>
+                                                    @if (enrollment.Grade.HasValue)
+                                                    {
+                                                        <span class="badge bg-success">@enrollment.Grade.Value</span>
+                                                    }
+                                                    else
+                                                    {
+                                                        <span class="badge bg-secondary">لم يتم التقييم</span>
+                                                    }
+                                                </td>
+                                                <td>@enrollment.EnrollmentDate.ToString("dd/MM/yyyy")</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-info mt-4">
+                            <i class="fas fa-info-circle me-2"></i>
+                            لا توجد مقررات مسجلة لهذا الطالب حتى الآن.
+                        </div>
+                    }
+                </div>
+                <div class="card-footer bg-light">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">
+                                <i class="fas fa-edit me-1"></i>
+                                تعديل
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger ms-2">
+                                <i class="fas fa-trash me-1"></i>
+                                حذف
+                            </a>
+                        </div>
+                        <a asp-action="Index" class="btn btn-secondary">
+                            <i class="fas fa-arrow-left me-1"></i>
+                            العودة للقائمة
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border: none;
+        border-radius: 15px;
+    }
+
+    .card-header {
+        border-radius: 15px 15px 0 0 !important;
+    }
+
+    .form-control-plaintext {
+        background-color: #f8f9fa;
+        padding: 8px 12px;
+        border-radius: 5px;
+        border: 1px solid #e9ecef;
+        margin-bottom: 0;
+    }
+
+    .table th {
+        border-top: none;
+    }
+
+    .badge {
+        font-size: 0.9em;
+    }
+
+    .btn {
+        border-radius: 8px;
+        padding: 8px 16px;
+    }
+
+    .alert {
+        border-radius: 10px;
+    }
+</style>

@@ -1,0 +1,202 @@
+﻿@model Student
+
+@{
+    ViewData["Title"] = "إضافة طالب جديد";
+}
+
+
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-lg">
+                <div class="card-header bg-success text-white">
+                    <h3 class="mb-0">
+                        <i class="fas fa-user-plus me-3"></i>إضافة طالب جديد
+                    </h3>
+                </div>
+                <div class="card-body p-4">
+                    <form asp-action="Create" method="post" class="needs-validation" novalidate>
+                        <div class="row">
+                            <!-- الاسم الأول -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="FirstName" class="form-label fw-bold">
+                                    <i class="fas fa-user me-2"></i>الاسم الأول
+                                </label>
+                                <input asp-for="FirstName" class="form-control form-control-lg"
+                                       placeholder="أدخل الاسم الأول" required />
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                                <div class="invalid-feedback">
+                                    يرجى إدخال الاسم الأول
+                                </div>
+                            </div>
+
+                            <!-- الاسم الأخير -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="LastName" class="form-label fw-bold">
+                                    <i class="fas fa-user me-2"></i>الاسم الأخير
+                                </label>
+                                <input asp-for="LastName" class="form-control form-control-lg"
+                                       placeholder="أدخل الاسم الأخير" required />
+                                <span asp-validation-for="LastName" class="text-danger"></span>
+                                <div class="invalid-feedback">
+                                    يرجى إدخال الاسم الأخير
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- البريد الإلكتروني -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Email" class="form-label fw-bold">
+                                    <i class="fas fa-envelope me-2"></i>البريد الإلكتروني
+                                </label>
+                                <input asp-for="Email" type="email" class="form-control form-control-lg"
+                                       placeholder="example@email.com" required />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                                <div class="invalid-feedback">
+                                    يرجى إدخال بريد إلكتروني صحيح
+                                </div>
+                            </div>
+
+                            <!-- رقم الهاتف -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Phone" class="form-label fw-bold">
+                                    <i class="fas fa-phone me-2"></i>رقم الهاتف
+                                    <small class="text-muted">(اختياري)</small>
+                                </label>
+                                <input asp-for="Phone" type="tel" class="form-control form-control-lg"
+                                       placeholder="01xxxxxxxxx" />
+                                <span asp-validation-for="Phone" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <!-- تاريخ الميلاد -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="DateOfBirth" class="form-label fw-bold">
+                                    <i class="fas fa-calendar-alt me-2"></i>تاريخ الميلاد
+                                </label>
+                                <input asp-for="DateOfBirth" type="date" class="form-control form-control-lg"
+                                       required />
+                                <span asp-validation-for="DateOfBirth" class="text-danger"></span>
+                                <div class="invalid-feedback">
+                                    يرجى إدخال تاريخ الميلاد
+                                </div>
+                            </div>
+
+                            <!-- تاريخ التسجيل -->
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="EnrollmentDate" class="form-label fw-bold">
+                                    <i class="fas fa-calendar-check me-2"></i>تاريخ التسجيل
+                                </label>
+                                <input asp-for="EnrollmentDate" type="date" class="form-control form-control-lg"
+                                       value="@DateTime.Now.ToString("yyyy-MM-dd")" required />
+                                <span asp-validation-for="EnrollmentDate" class="text-danger"></span>
+                                <div class="invalid-feedback">
+                                    يرجى إدخال تاريخ التسجيل
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- أزرار التحكم -->
+                        <div class="row mt-4">
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between">
+                                    <a asp-action="Index" class="btn btn-outline-secondary btn-lg">
+                                        <i class="fas fa-arrow-left me-2"></i>العودة للقائمة
+                                    </a>
+                                    <div>
+                                        <button type="reset" class="btn btn-outline-warning btn-lg me-2">
+                                            <i class="fas fa-undo me-2"></i>إعادة تعيين
+                                        </button>
+                                        <button type="submit" class="btn btn-success btn-lg">
+                                            <i class="fas fa-save me-2"></i>حفظ الطالب
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- معلومات إضافية -->
+            <div class="card mt-4 border-info">
+                <div class="card-body">
+                    <h6 class="card-title text-info">
+                        <i class="fas fa-info-circle me-2"></i>ملاحظات مهمة
+                    </h6>
+                    <ul class="list-unstyled mb-0">
+                        <li><i class="fas fa-check text-success me-2"></i>جميع الحقول المطلوبة يجب ملؤها</li>
+                        <li><i class="fas fa-check text-success me-2"></i>البريد الإلكتروني يجب أن يكون صحيحاً وفريداً</li>
+                        <li><i class="fas fa-check text-success me-2"></i>رقم الهاتف اختياري ولكن يُفضل إدخاله</li>
+                        <li><i class="fas fa-check text-success me-2"></i>تاريخ التسجيل افتراضياً هو اليوم</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-control:focus {
+        border-color: #28a745;
+        box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
+    }
+
+    .card {
+        border-radius: 15px;
+        border: none;
+    }
+
+    .card-header {
+        border-radius: 15px 15px 0 0 !important;
+    }
+
+    .form-label {
+        color: #495057;
+        margin-bottom: 8px;
+    }
+
+    .btn {
+        border-radius: 8px;
+        font-weight: 500;
+    }
+
+    .invalid-feedback {
+        display: block;
+    }
+</style>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+
+    <script>
+        // Bootstrap form validation
+        (function() {
+            'use strict';
+            window.addEventListener('load', function() {
+                var forms = document.getElementsByClassName('needs-validation');
+                var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                            event.preventDefault();
+                            event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                });
+            }, false);
+        })();
+
+        // تحديد الحد الأقصى لتاريخ الميلاد (18 سنة على الأقل)
+        document.addEventListener('DOMContentLoaded', function() {
+            const dobInput = document.querySelector('input[name="DateOfBirth"]');
+            const today = new Date();
+            const maxDate = new Date(today.getFullYear() - 16, today.getMonth(), today.getDate());
+            dobInput.max = maxDate.toISOString().split('T')[0];
+        });
+    </script>
+}
