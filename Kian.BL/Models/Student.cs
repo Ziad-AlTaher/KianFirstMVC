@@ -14,7 +14,7 @@ public class Student
     [StringLength(100)]
     public string FirstName { get; set; } = string.Empty;
 
-    [Required]
+    [Required]     
     [StringLength(100)]
     public string LastName { get; set; } = string.Empty;
 
