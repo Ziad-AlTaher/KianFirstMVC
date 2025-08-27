@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.14.36310.24 d17.14
+VisualStudioVersion = 17.14.36310.24
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kian.MVC", "Kian.MVC\Kian.MVC.csproj", "{4209E405-4D5F-499F-B5CB-8F08523F1BE5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kian.BL", "Kian.BL\Kian.BL.csproj", "{4E3F647D-C095-4E33-B990-7A337415EEA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kian.API", "Kian.API\Kian.API.csproj", "{8131EDDE-A1D5-4DB8-8378-200A178BE367}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{4E3F647D-C095-4E33-B990-7A337415EEA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4E3F647D-C095-4E33-B990-7A337415EEA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4E3F647D-C095-4E33-B990-7A337415EEA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8131EDDE-A1D5-4DB8-8378-200A178BE367}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8131EDDE-A1D5-4DB8-8378-200A178BE367}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8131EDDE-A1D5-4DB8-8378-200A178BE367}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8131EDDE-A1D5-4DB8-8378-200A178BE367}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,30 @@
+﻿@httpUrl = http://localhost:5196
+@httpsUrl = https://localhost:7132
+
+@baseUrl = {{httpsUrl}}
+@studentsUrl = {{baseUrl}}/api/students
+
+
+
+### Get all students
+GET {{studentsUrl}}
+content-type: application/json
+
+### Get a student by ID
+GET {{studentsUrl}}/2
+content-type: application/json
+
+
+
+### Create a new student
+POST {{studentsUrl}}
+content-type: application/json
+
+{
+  "firstName": "أحمد",
+  "lastName": "محمد",
+  "email": "ahmed.mohamed@example.com",
+  "phone": "+201234567890",
+  "dateOfBirth": "2000-05-15T00:00:00",
+  "enrollmentDate": "2024-01-15T00:00:00"
+}
